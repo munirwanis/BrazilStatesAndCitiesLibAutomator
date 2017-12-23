@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A14CB0DA1FEE9BFA00F35167 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14CB0D91FEE9BFA00F35167 /* main.swift */; };
+		A14CB0E11FEE9C6300F35167 /* BrazilStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14CB0E01FEE9C6300F35167 /* BrazilStates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		A14CB0D61FEE9BFA00F35167 /* BrazilStatesAndCitiesLibAutomator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BrazilStatesAndCitiesLibAutomator; sourceTree = BUILT_PRODUCTS_DIR; };
 		A14CB0D91FEE9BFA00F35167 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A14CB0E01FEE9C6300F35167 /* BrazilStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrazilStates.swift; sourceTree = "<group>"; };
+		A14CB0E21FEE9D0D00F35167 /* estados-cidades.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "estados-cidades.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				A14CB0D91FEE9BFA00F35167 /* main.swift */,
+				A14CB0E01FEE9C6300F35167 /* BrazilStates.swift */,
+				A14CB0E21FEE9D0D00F35167 /* estados-cidades.json */,
 			);
 			path = BrazilStatesAndCitiesLibAutomator;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A14CB0DA1FEE9BFA00F35167 /* main.swift in Sources */,
+				A14CB0E11FEE9C6300F35167 /* BrazilStates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
