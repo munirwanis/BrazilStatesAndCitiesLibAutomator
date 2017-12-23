@@ -35,7 +35,7 @@ if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMa
         let tab = "    "
         
         // MARK: - Enum declaration
-        var statesEnum = "enum BrazilStates: String {\n"
+        var statesEnum = "enum BrazilStates: String, EnumCollection {\n"
         
         states.forEach {
             statesEnum.append("\(tab)case \($0.sigla.lowercased()) = \"\($0.sigla.uppercased())\"\n")
@@ -61,18 +61,35 @@ if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMa
         
         // MARK: - getStateInformation() method
         
-        statesEnum.append("\(tab)private func getStateInformation() -> (name: String, cities: [String]) {\n")
+        statesEnum.append("\(tab)private func getStateInformation() -> (name: String, code: String, cities: [String]) {\n")
         statesEnum.append("\(tab)\(tab)switch self {\n")
         
         states.forEach {
-            statesEnum.append("\(tab)\(tab)\(tab)case .\($0.sigla.lowercased()): return (\"\($0.nome)\", \($0.cidades))\n")
+            statesEnum.append("\(tab)\(tab)\(tab)case .\($0.sigla.lowercased()): return (\"\($0.nome)\", \"\($0.sigla.uppercased())\", \($0.cidades))\n")
         }
         
-        statesEnum.append("\(tab)\(tab)\(tab)default: return (\"\", [])\n")
         statesEnum.append("\(tab)\(tab)}\n")
         statesEnum.append("\(tab)}\n")
         
-        statesEnum.append("}")
+        statesEnum.append("}\n\n")
+        
+        statesEnum.append("""
+        protocol EnumCollection : Hashable {}
+        extension EnumCollection {
+            static func cases() -> AnySequence<Self> {
+                typealias S = Self
+                return AnySequence { () -> AnyIterator<S> in
+                    var raw = 0
+                    return AnyIterator {
+                        let current : Self = withUnsafePointer(to: &raw) { $0.withMemoryRebound(to: S.self, capacity: 1) { $0.pointee } }
+                        guard current.hashValue == raw else { return nil }
+                        raw += 1
+                        return current
+                    }
+                }
+            }
+        }
+        """)
         
         try statesEnum.write(to: fileURLToWrite, atomically: false, encoding: .utf8)
     }
